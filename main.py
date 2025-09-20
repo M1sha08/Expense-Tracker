@@ -28,7 +28,7 @@ def execute_command(option) -> None:
     {"number": 1, "action": expense_manager.add_expense},
     {"number": 2, "action": expense_manager.edit_expense},
     {"number": 3, "action": expense_manager.delete_expense},
-    {"number": 4, "action": expense_manager.show_expenses},
+    {"number": 4, "action": expense_manager.view_expenses},
   ]
 
   option = int(option)
