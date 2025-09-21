@@ -1,9 +1,10 @@
+""" database.py """
+
 import sqlite3
-import os
 
-DB_NAME = os.path.join("Expense Tracker (CLI)", "expenses.db")
+DB_NAME = "expenses.db"
 
-def get_connection():
+def get_connection() -> sqlite3.Connection:
   return sqlite3.connect(DB_NAME)
 
 def init_db():
@@ -23,7 +24,7 @@ def init_db():
   connection.close()
 
 
-def create_expense(amount, category, date, description):
+def create_expense(amount: float, category: str, date: str, description: str):
   connection = get_connection()
   cursor = connection.cursor()
   cursor.execute(
@@ -34,7 +35,7 @@ def create_expense(amount, category, date, description):
   connection.close()
 
 
-def update_expense(expense_id, new_amount, new_category, new_description):
+def update_expense(expense_id: int, new_amount: float, new_category: str, new_description: str):
   connection = get_connection()
   cursor = connection.cursor()
   cursor.execute(
@@ -49,6 +50,13 @@ def update_expense(expense_id, new_amount, new_category, new_description):
   connection.close()
   
 
+def delete_expense(expense_id: int) -> None:
+  connection = get_connection()
+  cursor = connection.cursor()
+  cursor.execute("DELETE FROM expenses WHERE id = ?", (expense_id,))
+  connection.commit()
+  connection.close()
+
 def get_expenses() -> list:
   connection = get_connection()
   cursor = connection.cursor()
@@ -57,7 +65,7 @@ def get_expenses() -> list:
   connection.close()
   return rows
 
-def check_expense_exists(expense_id) -> bool:
+def check_expense_exists(expense_id: int) -> bool:
   connection = get_connection()
   cursor = connection.cursor()
   cursor.execute("SELECT 1 FROM expenses WHERE id = ?", (expense_id,))
@@ -65,7 +73,7 @@ def check_expense_exists(expense_id) -> bool:
   connection.close()
   return exists 
 
-def get_expense(expense_id):
+def get_expense(expense_id: int):
   connection = get_connection()
   cursor = connection.cursor()
   cursor.execute("SELECT id, amount, category, date, description FROM expenses WHERE id = ?", (expense_id,))

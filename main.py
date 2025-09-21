@@ -1,3 +1,5 @@
+""" main.py """
+
 import expense_manager
 import utils
 
@@ -5,10 +7,10 @@ import utils
 def show_menu() -> None:
   print(f"{'Menu':_^18}")
 
-  print("1. Add Expense\n" \
-  "2. Edit Expense\n" \
-  "3. Delete Expense\n" \
-  "4. View Expenses\n" \
+  print("1. Add Expense\n" 
+  "2. Edit Expense\n" 
+  "3. Delete Expense\n" 
+  "4. View Expenses\n" 
   "5. Quit Program")
 
 
