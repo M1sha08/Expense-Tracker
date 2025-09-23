@@ -11,7 +11,8 @@ def show_menu() -> None:
   "2. Edit Expense\n" 
   "3. Delete Expense\n" 
   "4. View Expenses\n" 
-  "5. Quit Program")
+  "5. Search Expenses\n"
+  "6. Quit Program")
 
 
 def check_option(option) -> bool:
@@ -19,7 +20,7 @@ def check_option(option) -> bool:
     return False
   option = int(option)
 
-  if 1 <= option <= 5:
+  if 1 <= option <= 6:
     return True
   
   return False
@@ -30,7 +31,8 @@ def execute_command(option) -> None:
     {"number": 1, "action": expense_manager.add_expense},
     {"number": 2, "action": expense_manager.edit_expense},
     {"number": 3, "action": expense_manager.delete_expense},
-    {"number": 4, "action": expense_manager.view_expenses},
+    {"number": 4, "action": lambda: expense_manager.view_expenses(pause=True)},
+    {"number": 5, "action": expense_manager.search_expense}
   ]
 
   option = int(option)
@@ -46,7 +48,7 @@ def main() -> None:
 
     users_option = input('Choose an option (Enter number): ').strip()
     if check_option(users_option):
-      if int(users_option) == 5:
+      if int(users_option) == 6:
         running = False
       execute_command(users_option)
     else:

@@ -23,19 +23,12 @@ def is_valid_date(value) -> bool:
   except ValueError:
     return False
 
-def list_expenses(expenses): # Might not use it, but better just to keep it anyway
-  
-  id_space = 1
-  amount_space = 1
-  category_space = 1
-  date_space = 1
+def list_expenses(expenses):
 
-  print(f"\n{'ID':<{id_space}} - {'Amount':<{amount_space}} - {'Category':<{category_space}} - {'Date':<{date_space}} - Description")
+  print(f"ID - Amount - Category - Date - Description")
   print('-'*100)
 
   for expense in expenses:
     expense_id, amount, category, date, description = expense
-    print(f"{expense_id:<{id_space}} | {amount:<{amount_space}} | {category:<{category_space}} | {date:<{date_space}} | {description}")
-
-
-  input("Press any button to go back to menu.")
+    print(f"{expense_id} - {amount} - {category:} - {date} - {description}")
+    print('-'*100)
